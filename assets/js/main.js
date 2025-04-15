@@ -3,208 +3,219 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+
 (function($) {
 
-    var $window = $(window),
-        $body = $('body'),
-        $header = $('#header'),
-        $all = $body.add($header);
+	var	$window = $(window),
+		$body = $('body'),
+		$header = $('#header'),
+		$all = $body.add($header);
 
-    // Breakpoints.
-    breakpoints({
-        xxlarge: [ '1681px',  '1920px' ],
-        xlarge:  [ '1281px',  '1680px' ],
-        large:   [ '1001px',  '1280px' ],
-        medium:  [ '737px',   '1000px' ],
-        small:   [ '481px',   '736px'  ],
-        xsmall:  [ null,      '480px'  ]
-    });
+	// Breakpoints.
+		breakpoints({
+			xxlarge: [ '1681px',  '1920px' ],
+			xlarge:  [ '1281px',  '1680px' ],
+			large:   [ '1001px',  '1280px' ],
+			medium:  [ '737px',   '1000px' ],
+			small:   [ '481px',   '736px'  ],
+			xsmall:  [ null,      '480px'  ]
+		});
 
-    // Play initial animations on page load.
-    $window.on('load', function() {
-        setTimeout(function() {
-            $body.removeClass('is-preload');
-        }, 100);
-    });
+	// Play initial animations on page load.
+		$window.on('load', function() {
+			setTimeout(function() {
+				$body.removeClass('is-preload');
+			}, 100);
+		});
 
-    // Touch mode.
-    if (browser.mobile)
-        $body.addClass('is-touch');
-    else {
-        breakpoints.on('<=small', function() {
-            $body.addClass('is-touch');
-        });
+	// Touch mode.
+		if (browser.mobile)
+			$body.addClass('is-touch');
+		else {
 
-        breakpoints.on('>small', function() {
-            $body.removeClass('is-touch');
-        });
-    }
+			breakpoints.on('<=small', function() {
+				$body.addClass('is-touch');
+			});
 
-    // Fix: IE flexbox fix.
-    if (browser.name == 'ie') {
-        var $main = $('.main.fullscreen'),
-            IEResizeTimeout;
+			breakpoints.on('>small', function() {
+				$body.removeClass('is-touch');
+			});
 
-        $window
-            .on('resize.ie-flexbox-fix', function() {
-                clearTimeout(IEResizeTimeout);
+		}
 
-                IEResizeTimeout = setTimeout(function() {
-                    var wh = $window.height();
+	// Fix: IE flexbox fix.
+		if (browser.name == 'ie') {
 
-                    $main.each(function() {
-                        var $this = $(this);
+			var $main = $('.main.fullscreen'),
+				IEResizeTimeout;
 
-                        $this.css('height', '');
+			$window
+				.on('resize.ie-flexbox-fix', function() {
 
-                        if ($this.height() <= wh)
-                            $this.css('height', (wh - 50) + 'px');
-                    });
-                });
+					clearTimeout(IEResizeTimeout);
 
-            })
-            .triggerHandler('resize.ie-flexbox-fix');
-    }
+					IEResizeTimeout = setTimeout(function() {
 
-    // Gallery.
-    $window.on('load', function() {
-        var $gallery = $('.gallery');
+						var wh = $window.height();
 
-        $gallery.poptrox({
-            baseZIndex: 10001,
-            useBodyOverflow: false,
-            usePopupEasyClose: false,
-            overlayColor: '#1f2328',
-            overlayOpacity: 0.65,
-            usePopupDefaultStyling: false,
-            usePopupCaption: true,
-            popupLoaderText: '',
-            windowMargin: 50,
-            usePopupNav: true
-        });
+						$main.each(function() {
 
-        // Hack: Adjust margins when 'small' activates.
-        breakpoints.on('>small', function() {
-            $gallery.each(function() {
-                $(this)[0]._poptrox.windowMargin = 50;
-            });
-        });
+							var $this = $(this);
 
-        breakpoints.on('<=small', function() {
-            $gallery.each(function() {
-                $(this)[0]._poptrox.windowMargin = 5;
-            });
-        });
-    });
+							$this.css('height', '');
 
-    // Section transitions.
-    if (browser.canUse('transition')) {
+							if ($this.height() <= wh)
+								$this.css('height', (wh - 50) + 'px');
 
-        var on = function() {
-            // Galleries.
-            $('.gallery')
-                .scrollex({
-                    top:        '30vh',
-                    bottom:     '30vh',
-                    delay:      50,
-                    initialize: function() { $(this).addClass('inactive'); },
-                    terminate:  function() { $(this).removeClass('inactive'); },
-                    enter:      function() { $(this).removeClass('inactive'); },
-                    leave:      function() { $(this).addClass('inactive'); }
-                });
+						});
 
-            // Generic sections.
-            $('.main.style1')
-                .scrollex({
-                    mode:       'middle',
-                    delay:      100,
-                    initialize: function() { $(this).addClass('inactive'); },
-                    terminate:  function() { $(this).removeClass('inactive'); },
-                    enter:      function() { $(this).removeClass('inactive'); },
-                    leave:      function() { $(this).addClass('inactive'); }
-                });
+					});
 
-            $('.main.style2')
-                .scrollex({
-                    mode:       'middle',
-                    delay:      100,
-                    initialize: function() { $(this).addClass('inactive'); },
-                    terminate:  function() { $(this).removeClass('inactive'); },
-                    enter:      function() { $(this).removeClass('inactive'); },
-                    leave:      function() { $(this).addClass('inactive'); }
-                });
+				})
+				.triggerHandler('resize.ie-flexbox-fix');
 
-            // Contact.
-            $('#contact')
-                .scrollex({
-                    top:        '50%',
-                    delay:      50,
-                    initialize: function() { $(this).addClass('inactive'); },
-                    terminate:  function() { $(this).removeClass('inactive'); },
-                    enter:      function() { $(this).removeClass('inactive'); },
-                    leave:      function() { $(this).addClass('inactive'); }
-                });
+		}
 
-        };
+	// Gallery.
+		$window.on('load', function() {
 
-        var off = function() {
-            // Galleries.
-            $('.gallery')
-                .unscrollex();
+			var $gallery = $('.gallery');
 
-            // Generic sections.
-            $('.main.style1')
-                .unscrollex();
+			$gallery.poptrox({
+				baseZIndex: 10001,
+				useBodyOverflow: false,
+				usePopupEasyClose: false,
+				overlayColor: '#1f2328',
+				overlayOpacity: 0.65,
+				usePopupDefaultStyling: false,
+				usePopupCaption: true,
+				popupLoaderText: '',
+				windowMargin: 50,
+				usePopupNav: true
+			});
 
-            $('.main.style2')
-                .unscrollex();
+			// Hack: Adjust margins when 'small' activates.
+				breakpoints.on('>small', function() {
+					$gallery.each(function() {
+						$(this)[0]._poptrox.windowMargin = 50;
+					});
+				});
 
-            // Contact.
-            $('#contact')
-                .unscrollex();
-        };
+				breakpoints.on('<=small', function() {
+					$gallery.each(function() {
+						$(this)[0]._poptrox.windowMargin = 5;
+					});
+				});
 
-        breakpoints.on('<=small', off);
-        breakpoints.on('>small', on);
-    }
+		});
 
-    // Events.
-    var resizeTimeout, resizeScrollTimeout;
+	// Section transitions.
+		if (browser.canUse('transition')) {
 
-    $window
-        .on('resize', function() {
-            // Disable animations/transitions.
-            $body.addClass('is-resizing');
+			var on = function() {
 
-            clearTimeout(resizeTimeout);
+				// Galleries.
+					$('.gallery')
+						.scrollex({
+							top:		'30vh',
+							bottom:		'30vh',
+							delay:		50,
+							initialize:	function() { $(this).addClass('inactive'); },
+							terminate:	function() { $(this).removeClass('inactive'); },
+							enter:		function() { $(this).removeClass('inactive'); },
+							leave:		function() { $(this).addClass('inactive'); }
+						});
 
-            resizeTimeout = setTimeout(function() {
-                // Update scrolly links.
-                $('a[href^="#"]').scrolly({
-                    speed: 1500,
-                    offset: $header.outerHeight() - 1
-                });
+				// Generic sections.
+					$('.main.style1')
+						.scrollex({
+							mode:		'middle',
+							delay:		100,
+							initialize:	function() { $(this).addClass('inactive'); },
+							terminate:	function() { $(this).removeClass('inactive'); },
+							enter:		function() { $(this).removeClass('inactive'); },
+							leave:		function() { $(this).addClass('inactive'); }
+						});
 
-                // Re-enable animations/transitions.
-                setTimeout(function() {
-                    $body.removeClass('is-resizing');
-                    $window.trigger('scroll');
-                }, 0);
+					$('.main.style2')
+						.scrollex({
+							mode:		'middle',
+							delay:		100,
+							initialize:	function() { $(this).addClass('inactive'); },
+							terminate:	function() { $(this).removeClass('inactive'); },
+							enter:		function() { $(this).removeClass('inactive'); },
+							leave:		function() { $(this).addClass('inactive'); }
+						});
 
-            }, 100);
+				// Contact.
+					$('#contact')
+						.scrollex({
+							top:		'50%',
+							delay:		50,
+							initialize:	function() { $(this).addClass('inactive'); },
+							terminate:	function() { $(this).removeClass('inactive'); },
+							enter:		function() { $(this).removeClass('inactive'); },
+							leave:		function() { $(this).addClass('inactive'); }
+						});
 
-        })
-        .on('load', function() {
-            $window.trigger('resize');
-        });
+			};
 
-    // Dropdown Menu for Mobile
-    var $hamburger = $('#hamburger-icon');
-    var $navMenu = $('.nav-menu');
+			var off = function() {
 
-    // Toggle the menu on hamburger click
-    $hamburger.on('click', function() {
-        $navMenu.toggleClass('show');
-    });
+				// Galleries.
+					$('.gallery')
+						.unscrollex();
+
+				// Generic sections.
+					$('.main.style1')
+						.unscrollex();
+
+					$('.main.style2')
+						.unscrollex();
+
+				// Contact.
+					$('#contact')
+						.unscrollex();
+
+			};
+
+			breakpoints.on('<=small', off);
+			breakpoints.on('>small', on);
+
+		}
+		
+
+	// Events.
+		var resizeTimeout, resizeScrollTimeout;
+
+		$window
+			.on('resize', function() {
+
+				// Disable animations/transitions.
+					$body.addClass('is-resizing');
+
+				clearTimeout(resizeTimeout);
+
+				resizeTimeout = setTimeout(function() {
+
+					// Update scrolly links.
+						$('a[href^="#"]').scrolly({
+							speed: 1500,
+							offset: $header.outerHeight() - 1
+						});
+
+					// Re-enable animations/transitions.
+						setTimeout(function() {
+							$body.removeClass('is-resizing');
+							$window.trigger('scroll');
+						}, 0);
+
+				}, 100);
+
+			})
+			.on('load', function() {
+				$window.trigger('resize');
+			});
+	
 
 })(jQuery);

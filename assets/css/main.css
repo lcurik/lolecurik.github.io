@@ -2443,6 +2443,7 @@ p {
     align-items: center;
   }
 }
+
 	.social-icons {
 	  text-align: center;
 	  margin-top: 2rem;
@@ -2536,62 +2537,5 @@ p {
 	}
 		}
 	
-		/* Hamburger Icon */
-		.hamburger-icon {
-		  display: none;
-		  cursor: pointer;
-		  width: 30px;
-		  height: 30px;
-		  position: relative;
-		  z-index: 10;
-		}
-
-		.hamburger-icon span {
-		  display: block;
-		  width: 100%;
-		  height: 5px;
-		  background-color: #333;
-		  margin: 6px 0;
-		  transition: all 0.3s ease-in-out;
-		}
-
-		/* Show the hamburger on small screens */
-		@media (max-width: 768px) {
-		  .hamburger-icon {
-		    display: block; /* Show the hamburger icon on small screens */
-		  }
-
-		  .nav-menu {
-		    display: none;
-		    flex-direction: column;
-		    align-items: center;
-		    position: absolute;
-		    top: 60px;
-		    left: 20px;
-		    right: 20px;
-		    background-color: #fff;
-		    padding: 1rem;
-		    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-		  }
-
-		  .nav-menu.show {
-		    display: flex; /* Show the menu when 'show' class is added */
-		  }
-
-		  .nav-menu li {
-		    margin: 10px 0;
-		  }
-
-		  .nav-menu li a {
-		    color: #333;
-		    text-decoration: none;
-		    font-size: 1.2rem;
-		    padding: 10px;
-		    transition: color 0.3s ease;
-		  }
-
-		  .nav-menu li a:hover {
-		    color: #FF6600;
-		  }
-		}
+	
 	

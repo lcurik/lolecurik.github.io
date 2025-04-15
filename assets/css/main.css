@@ -2365,38 +2365,70 @@ p {
 	    background-size: cover;
 	  }
 
-	  /* Wrapper for all Spotify players */
+	  /* === DESKTOP DEFAULT STYLES (Absolute positioning) === */
+	  .spotify-album-container {
+	    position: absolute;
+	    top: 20px;
+	    right: 20px;
+	  }
+
+	  .spotify-track-container {
+	    position: absolute;
+	    bottom: 20px;
+	    right: 20px;
+	  }
+
+	  .spotify-album-right-container {
+	    position: absolute;
+	    top: 65%;
+	    right: 20px;
+	    transform: translateY(-50%);
+	  }
+
+	  /* === SHARED IFRAME STYLES === */
+	  .spotify-album-container iframe,
+	  .spotify-track-container iframe,
+	  .spotify-album-right-container iframe {
+	    border-radius: 10px;
+	    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	    width: 400px;
+	  }
+
+	  /* === SPOTIFY WRAPPER (optional if you're wrapping the players) === */
 	  .spotify-wrapper {
 	    display: flex;
 	    flex-wrap: wrap;
 	    justify-content: center;
 	    gap: 2rem;
+	    padding: 2rem;
 	    margin-top: 2rem;
-	    padding: 1rem;
 	  }
 
-	  /* Individual container styling */
 	  .spotify-wrapper > div {
 	    flex: 1 1 300px;
 	    max-width: 400px;
 	  }
 
-	  .spotify-wrapper iframe {
-	    width: 100%;
-	    border-radius: 10px;
-	    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	  }
-
-	  /* Mobile layout - stack vertically */
+	  /* === MOBILE: STACK AND RESET ABSOLUTE POSITIONING === */
 	  @media (max-width: 768px) {
+	    .spotify-album-container,
+	    .spotify-track-container,
+	    .spotify-album-right-container {
+	      position: static;
+	      margin-top: 1.5rem;
+	      text-align: center;
+	    }
+
+	    .spotify-album-container iframe,
+	    .spotify-track-container iframe,
+	    .spotify-album-right-container iframe {
+	      width: 100%;
+	      max-width: 400px;
+	    }
+
 	    .spotify-wrapper {
 	      flex-direction: column;
 	      align-items: center;
-	    }
-
-	    .spotify-wrapper iframe {
-	      width: 100%;
-	      max-width: 100%;
 	    }
 	  }
 	.social-icons {

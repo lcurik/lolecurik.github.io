@@ -2365,82 +2365,40 @@ p {
 	    background-size: cover;
 	  }
 
-	.spotify-album-container {
-	  position: absolute;
-	  top: 20px;   /* Adjust top margin if needed */
-	  right: 20px; /* Adjust right margin if needed */
-	}
-
-	.spotify-album-container iframe {
-	  border-radius: 10px;
-	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	}
-	.spotify-track-container {
-	  position: absolute;
-	  bottom: 20px;  /* Adjust bottom margin if needed */
-	  right: 20px;   /* Adjust right margin if needed */
-	}
-
-	.spotify-track-container iframe {
-	  border-radius: 10px;
-	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	}
-	.spotify-album-right-container {
-	  position: absolute;
-	  top: 65%;   /* Positions it slightly down from the top */
-	  right: 20px; /* Adjust right margin if needed */
-	  transform: translateY(-50%); /* Centers it vertically within the right half */
-	}
-
-	.spotify-album-right-container iframe {
-	  border-radius: 10px;
-	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	}
-	.spotify-wrapper {
-	  display: flex;
-	  flex-wrap: wrap;
-	  justify-content: center;
-	  gap: 2rem;
-	  padding: 2rem;
-	}
-
-	.spotify-wrapper > div {
-	  flex: 1 1 300px;
-	  max-width: 400px;
-	}
-
-	/* Optional: for tighter control on small screens */
-	@media (max-width: 600px) {
+	  /* Wrapper for all Spotify players */
 	  .spotify-wrapper {
-	    flex-direction: column;
-	    align-items: center;
+	    display: flex;
+	    flex-wrap: wrap;
+	    justify-content: center;
+	    gap: 2rem;
+	    margin-top: 2rem;
+	    padding: 1rem;
+	  }
+
+	  /* Individual container styling */
+	  .spotify-wrapper > div {
+	    flex: 1 1 300px;
+	    max-width: 400px;
 	  }
 
 	  .spotify-wrapper iframe {
-	    width: 100% !important;
-	    max-width: 100%;
-	  }
-	}
-	.spotify-wrapper {
-	  display: flex;
-	  gap: 2rem;
-	  justify-content: center;
-	  flex-wrap: wrap;
-	  margin-top: 2rem;
-	}
-
-	/* On screens smaller than 768px, stack them vertically below the text */
-	@media (max-width: 768px) {
-	  .spotify-wrapper {
-	    flex-direction: column;
-	    align-items: center;
+	    width: 100%;
+	    border-radius: 10px;
+	    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	  }
 
-	  .spotify-wrapper iframe {
-	    width: 100% !important;
-	    max-width: 100%;
+	  /* Mobile layout - stack vertically */
+	  @media (max-width: 768px) {
+	    .spotify-wrapper {
+	      flex-direction: column;
+	      align-items: center;
+	    }
+
+	    .spotify-wrapper iframe {
+	      width: 100%;
+	      max-width: 100%;
+	    }
 	  }
-	}
 	.social-icons {
 	  text-align: center;
 	  margin-top: 2rem;
